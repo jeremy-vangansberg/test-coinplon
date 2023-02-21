@@ -11,6 +11,12 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'coinplon.settings')
+from coinplon.settings import base
+
+
+if base.DEBUG :
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'coinplon.settings.dev')
+else : 
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'coinplon.settings.prod')
 
 application = get_asgi_application()
